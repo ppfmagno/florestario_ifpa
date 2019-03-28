@@ -53,12 +53,45 @@ class DBcontrole extends mysqli {
   }
     
   // MUNICÍPIOS
+  public function getMunicipios() {
+    $sql = 'SELECT * FROM municipio';
+    if (!$resultado = $this->query($sql)) {
+      die('Erro na query[' . $this->error . ']');
+    }
+    while ($linha = $resultado->fetch_array()) {
+      $municipios[] = $linha;
+    }
+    return $municipios;
+  }
+
+  public function getMunicipioById($id) {
+    $sql = 'SELECT * FROM municipio WHERE municipio.id_municipio = ' . $id;
+    if (!$resultado = $this->query($sql)) {
+      die('Erro na query[' . $this->error . ']');      
+    }
+    return $resultado->fetch_array();
+  }
+
   public function insertMunicipio($municipio) {
     $sql = 'INSERT INTO municipio (nome, estado_id_estado)
       VALUES ("' . $municipio->nome . '","' . $municipio->estado . '")';
     $this->query($sql);
   }
+
+  public function updateMunicipio($municipio) {
+    $sql = 'UPDATE municipio
+      SET nome = "' . $municipio->nome . '",
+        estado_id_estado = "' . $municipio->estado . '"
+        WHERE municipio.id_municipio = ' . $municipio->id;
+    $this->query($sql);
+  }
+
   
+  public function deleteMunicipio($id) {
+    $sql = 'DELETE FROM municipio WHERE id_municipio = ' . $id;
+    $this->query($sql);
+  }
+
   // ESTADOS
   public function getEstados() {
     $sql = 'SELECT * FROM estado';

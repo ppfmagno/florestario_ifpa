@@ -28,4 +28,32 @@ if (!empty($_POST['novo_municipio']['nome']) AND !empty($_POST['novo_municipio']
   <input type="submit" value="Inserir">
 </form>
 
+<hr>
+
+<h2>Ler (Read)</h2>
+<table>
+  <tr>
+    <th>id</th>
+    <th>nome</th>
+    <th>estado</th>
+    <th>editar</th>
+    <th>deletar</th>
+  </tr>
+  <?php
+    $municipios = $con->getMunicipios();
+    foreach ($municipios as $key => $municipio) {
+      $estado = $con->getEstadoById($municipio['estado_id_estado']);
+  ?>
+  <tr>
+    <td><?php echo $municipio['id_municipio'] ?></td>
+    <td><?php echo $municipio['nome'] ?></td>
+    <td><?php echo $estado['nome'] ?></td>
+    <td><a href="./editar.php?id=<?php echo $municipio['id_municipio'] ?>">editar</a></td>
+    <td><a href="./deletar.php?id=<?php echo $municipio['id_municipio'] ?>">deletar</a></td>
+  </tr>
+  <?php
+    }
+  ?>
+</table>
+
 <?php include_once '../partials/footer.php'; ?>
