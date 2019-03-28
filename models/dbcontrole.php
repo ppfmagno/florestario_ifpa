@@ -39,7 +39,7 @@ class DBcontrole extends mysqli {
     echo $this->error;
   }
     
-    // ENDEREÇOS
+  // ENDEREÇOS
   public function insertEndereco($endereco) {
     $this->insertCidade($endereco->municipio);
     $sql = 'INSERT INTO endereco (rua, cep, numero, bairro, municipio_id_municipio)
@@ -52,11 +52,10 @@ class DBcontrole extends mysqli {
     $this->query($sql);
   }
     
-  // CIDADES
-  public function insertCidade($municipio) {
-    $this->insertEstado($municipio->estado);
+  // MUNICÍPIOS
+  public function insertMunicipio($municipio) {
     $sql = 'INSERT INTO municipio (nome, estado_id_estado)
-      VALUES ("' . $municipio->nome . '","' . $this->insert_id . '")';
+      VALUES ("' . $municipio->nome . '","' . $municipio->estado . '")';
     $this->query($sql);
   }
   
