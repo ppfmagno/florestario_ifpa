@@ -61,8 +61,39 @@ class DBcontrole extends mysqli {
   }
   
   // ESTADOS
+  public function getEstados() {
+    $sql = 'SELECT * FROM estado';
+    if (!$resultado = $this->query($sql)) {
+      die('Erro na query[' . $this->error . ']');
+    }
+    while ($linha = $resultado->fetch_array()) {
+      $estados[] = $linha;
+    }
+    return $estados;
+  }
+
+  public function getEstadoById($id) {
+    $sql = 'SELECT * FROM estado WHERE estado.id_estado = ' . $id;
+    if (!$resultado = $this->query($sql)) {
+      die('Erro na query[' . $this->error . ']');      
+    }
+    return $resultado->fetch_array();
+  }
+
   public function insertEstado($estado) {
     $sql = 'INSERT INTO estado (nome) VALUE ("' . $estado->nome . '")';
+    $this->query($sql);
+  }
+
+  public function updateEstado($estado) {
+    $sql = 'UPDATE estado
+      SET nome = "' . $estado->nome . '"
+      WHERE estado.id_estado = ' . $estado->id;
+    $this->query($sql);
+  }
+
+  public function deleteEstado($id) {
+    $sql = 'DELETE FROM estado WHERE id_estado = ' . $id;
     $this->query($sql);
   }
 }
