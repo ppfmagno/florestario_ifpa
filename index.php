@@ -1,7 +1,7 @@
 <?php include_once './views/partials/header.php'; ?>
   <ul>
     <li><a href="<?php echo $root ?>views/usuarios/usuarios.php">Usuários</a></li>
-    <li><a href="<?php echo $root ?>views/inventatios/inventatios.php">Inventários</a></li>
+    <li><a href="<?php echo $root ?>views/inventarios/inventarios.php">Inventários</a></li>
     <li><a href="<?php echo $root ?>views/parcelas.php">Parcelas</a></li>
     <li><a href="<?php echo $root ?>views/individuos.php">Indivíduos</a></li>
     <li><a href="<?php echo $root ?>views/pragas.php">Pragas</a></li>

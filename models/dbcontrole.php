@@ -67,6 +67,21 @@ class DBcontrole extends mysqli {
     return $inventarios;
   }
 
+  public function insertInventario($inventario) {
+    $sql = 'INSERT INTO inventario (nome_do_projeto, localidade_id_localidade, usuario_id_usuario)
+      VALUES ("'
+      . $inventario->nome . '","'
+      . $inventario->localidade . '","'
+      . $inventario->usuario . '")';
+    $this->query($sql);
+    echo $this->error;
+  }
+
+  public function deleteInventario($id) {
+    $sql = 'DELETE FROM inventario WHERE id_inventario = ' . $id;
+    $this->query($sql);
+  }
+
   // LOCALIDADES
   public function getLocalidades() {
     $sql = 'SELECT * FROM localidade';
@@ -110,7 +125,7 @@ class DBcontrole extends mysqli {
     $sql = 'DELETE FROM localidade WHERE id_localidade = ' . $id;
     $this->query($sql);
   }
-    
+
   // ENDEREÇOS
   public function getEnderecos() {
     $sql = 'SELECT * FROM endereco';
