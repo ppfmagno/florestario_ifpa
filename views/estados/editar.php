@@ -18,6 +18,7 @@ if (isset($_POST['estado'])) {
 }
 ?>
 <?php include_once '../partials/header.php';?>
+<?php include_once '../partials/menu.php'; ?>
 
 <h1>Estado</h1>
 <h2>Editar (Update)</h2>
