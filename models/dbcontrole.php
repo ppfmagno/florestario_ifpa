@@ -54,7 +54,78 @@ class DBcontrole extends mysqli {
     $sql = 'DELETE FROM usuario WHERE id_usuario = ' . $id;
     $this->query($sql);
   }
-    
+
+  // INVENTARIOS
+  public function getInventarios() {
+    $sql = 'SELECT * FROM inventario';
+    if (!$resultado = $this->query($sql)) {
+      die('Erro na query[' . $this->error . ']');
+    }
+    while ($linha = $resultado->fetch_array()) {
+      $inventarios[] = $linha;
+    }
+    return $inventarios;
+  }
+
+  public function insertInventario($inventario) {
+    $sql = 'INSERT INTO inventario (nome_do_projeto, localidade_id_localidade, usuario_id_usuario)
+      VALUES ("'
+      . $inventario->nome . '","'
+      . $inventario->localidade . '","'
+      . $inventario->usuario . '")';
+    $this->query($sql);
+    echo $this->error;
+  }
+
+  public function deleteInventario($id) {
+    $sql = 'DELETE FROM inventario WHERE id_inventario = ' . $id;
+    $this->query($sql);
+  }
+
+  // LOCALIDADES
+  public function getLocalidades() {
+    $sql = 'SELECT * FROM localidade';
+    if (!$resultado = $this->query($sql)) {
+      die('Erro na query[' . $this->error . ']');
+    }
+    while ($linha = $resultado->fetch_array()) {
+      $localidades[] = $linha;
+    }
+    return $localidades;
+  }
+
+  public function getLocalidadeById($id) {
+    $sql = 'SELECT * FROM localidade WHERE localidade.id_localidade = ' . $id;
+    if (!$resultado = $this->query($sql)) {
+      die('Erro na query[' . $this->error . ']');      
+    }
+    return $resultado->fetch_array();
+  }
+
+  public function insertLocalidade($localidade) {
+    $sql = 'INSERT INTO localidade (longitude, latitude, municipio_id_municipio)
+      VALUES ("'
+      . $localidade->longitude . '","'
+      . $localidade->latitude . '","'
+      . $localidade->municipio . '")';
+    $this->query($sql);
+    echo $this->error;
+  }
+
+  public function updateLocalidade($localidade) {
+    $sql = 'UPDATE localidade
+      SET longitude = "' . $localidade->longitude . '",
+        latitude = "' . $localidade->latitude . '",
+        municipio_id_municipio = "' . $localidade->municipio . '"
+        WHERE localidade.id_localidade = ' . $localidade->id;
+    $this->query($sql);
+  }
+
+  public function deleteLocalidade($id) {
+    $sql = 'DELETE FROM localidade WHERE id_localidade = ' . $id;
+    $this->query($sql);
+  }
+
   // ENDEREÇOS
   public function getEnderecos() {
     $sql = 'SELECT * FROM endereco';
