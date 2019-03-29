@@ -26,7 +26,6 @@ class DBcontrole extends mysqli {
   }
 
   public function insertUsuario($usuario) {
-    $this->insertEndereco($usuario->endereco);
     $sql = 'INSERT INTO usuario (nome, login, email, senha, crea, endereco_id_endereco)
       VALUES ("'
       . $usuario->nome . '","'
@@ -34,9 +33,26 @@ class DBcontrole extends mysqli {
       . $usuario->email . '","'
       . $usuario->senha . '","'
       . $usuario->crea . '","'
-      . $this->insert_id . '")';
+      . $usuario->endereco . '")';
     $this->query($sql);
     echo $this->error;
+  }
+
+  public function updateUsuario($usuario) {
+    $sql = 'UPDATE usuario
+      SET nome = "' . $usuario->nome . '",
+        login = "' . $usuario->login . '",
+        email = "' . $usuario->email . '",
+        senha = "' . $usuario->senha . '",
+        crea = "' . $usuario->crea . '",
+        endereco_id_endereco = "' . $usuario->endereco . '"
+        WHERE usuario.id_usuario = ' . $usuario->id;
+    $this->query($sql);
+  }
+
+  public function deleteUsuario($id) {
+    $sql = 'DELETE FROM usuario WHERE id_usuario = ' . $id;
+    $this->query($sql);
   }
     
   // ENDEREÇOS
