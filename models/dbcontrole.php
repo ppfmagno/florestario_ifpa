@@ -178,6 +178,7 @@ class DBcontrole extends mysqli {
     $this->query($sql);
   }
   
+  //Pragas
   public function getPragas(){
     $sql = 'SELECT * FROM praga';
     if (!$resultado = $this->query($sql)) {
@@ -214,6 +215,7 @@ class DBcontrole extends mysqli {
     return $resultado->fetch_array();
   }
   
+  //Especies
   public function getEspecies(){
     $sql = 'SELECT * FROM especie';
     if (!$resultado = $this->query($sql)) {
@@ -250,6 +252,7 @@ class DBcontrole extends mysqli {
     return $resultado->fetch_array();
   }
   
+  //Individuos
   public function getIndividuos(){
     $sql = 'SELECT * FROM individuo';
     if (!$resultado = $this->query($sql)) {
@@ -280,9 +283,10 @@ class DBcontrole extends mysqli {
   public function updateIndividuo($individuo){
     $sql = 'UPDATE individuo
             SET individuo.circunferencia_copa = "' . $individuo->circunferencia_copa . '", '
-            . 'individuo.circunferencia_altura_peito = "'+ $individuo->circunferencia_altura_do_peito +'", '
-            . 'individuo.oco = "'+ $individuo->oco +'" '
-            .'WHERE individuo.id_especie = ' . $individuo->id;
+            . 'individuo.circunferencia_altura_peito = "'. $individuo->circunferencia_altura_do_peito .'", '
+            . 'individuo.oco = "'. $individuo->oco .'", '
+            . 'individuo.especie_id_especie = "' . $individuo->especie . '" '
+            .'WHERE individuo.id_individuo = ' . $individuo->id;
     $this->query($sql);
   }
   

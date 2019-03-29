@@ -27,8 +27,8 @@
 <h1>Indivíduo</h1>
 <h2>Inserir (Create)</h2>
 <form method="post">
-    <input type="number" name="novo_individuo[circunferencia_copa]" placeholder="Circunferencia da Copa">
-    <input type="number" name="novo_individuo[circunferencia_altura_peito]" placeholder="Altura da Altura do Peito">
+    <input type="number" step=".01" name="novo_individuo[circunferencia_copa]" placeholder="Circunferencia da Copa">
+    <input type="number" step=".01" name="novo_individuo[circunferencia_altura_peito]" placeholder="Altura da Altura do Peito">
     <div>
         <label for="oco">Oco</label>
         <input type="checkbox" id="oco" name="novo_individuo[oco]" value="1">
@@ -39,7 +39,6 @@
         <option value="<?php echo $especie['id_especie']; ?>"><?php echo $especie['nome_cientifico']; ?></option>
         <?php } ?>
     </select>
-  </select>-->
   <input type="submit" value="Inserir">
 </form>
 
@@ -68,8 +67,8 @@
     <td><?php echo ($individuo['oco'] == '1' ? 'Sim' : 'Não') ?></td>
     <td><?php echo $individuo['data_criacao'] ?></td>
     <td><?php echo $individuo['data_modificacao'] ?></td>
-    <td><a href="./editar.php?id=<?php echo $praga['id_individuo'] ?>">editar</a></td>
-    <td><a href="./deletar.php?id=<?php echo $praga['id_individuo'] ?>">deletar</a></td>
+    <td><a href="./editar.php?id=<?php echo $individuo['id_individuo'] ?>">editar</a></td>
+    <td><a href="./deletar.php?id=<?php echo $individuo['id_individuo'] ?>">deletar</a></td>
   </tr>
   <?php
     }
