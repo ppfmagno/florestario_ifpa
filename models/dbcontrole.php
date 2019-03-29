@@ -40,15 +40,49 @@ class DBcontrole extends mysqli {
   }
     
   // ENDEREÇOS
+  public function getEnderecos() {
+    $sql = 'SELECT * FROM endereco';
+    if (!$resultado = $this->query($sql)) {
+      die('Erro na query[' . $this->error . ']');
+    }
+    while ($linha = $resultado->fetch_array()) {
+      $enderecos[] = $linha;
+    }
+    return $enderecos;
+  }
+
+  public function getEnderecoById($id) {
+    $sql = 'SELECT * FROM endereco WHERE endereco.id_endereco = ' . $id;
+    if (!$resultado = $this->query($sql)) {
+      die('Erro na query[' . $this->error . ']');      
+    }
+    return $resultado->fetch_array();
+  }
+
   public function insertEndereco($endereco) {
-    $this->insertCidade($endereco->municipio);
     $sql = 'INSERT INTO endereco (rua, cep, numero, bairro, municipio_id_municipio)
       VALUES ("'
       . $endereco->rua . '","'
       . $endereco->cep . '","'
       . $endereco->numero . '","'
       . $endereco->bairro . '","'
-      . $this->insert_id . '")';
+      . $endereco->municipio . '")';
+    $this->query($sql);
+  }
+
+  public function updateEndereco($endereco) {
+    $sql = 'UPDATE endereco
+      SET rua = "' . $endereco->rua . '",
+        cep = "' . $endereco->cep . '",
+        numero = "' . $endereco->numero . '",
+        bairro = "' . $endereco->bairro . '",
+        municipio_id_municipio = "' . $endereco->municipio . '"
+        WHERE endereco.id_endereco = ' . $endereco->id;
+    $this->query($sql);
+  }
+
+  public function deleteEndereco($id) {
+    $sql = 'DELETE FROM endereco WHERE id_endereco = ' . $id;
     $this->query($sql);
   }
     
@@ -86,7 +120,6 @@ class DBcontrole extends mysqli {
     $this->query($sql);
   }
 
-  
   public function deleteMunicipio($id) {
     $sql = 'DELETE FROM municipio WHERE id_municipio = ' . $id;
     $this->query($sql);

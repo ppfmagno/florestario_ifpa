@@ -16,11 +16,12 @@ if (!empty($_POST['municipio']['nome']) AND !empty($_POST['municipio']['id_estad
   $municipioEstado = $con->getEstadoById($municipio['estado_id_estado']);
   $estados = $con->getEstados();
 } else {
-  header('Location: ./estados.php');
+  header('Location: ./municipios.php');
   die();
 }
 ?>
 <?php include_once '../partials/header.php';?>
+<?php include_once '../partials/menu.php'; ?>
 
 <h1>Município</h1>
 <h2>Editar (Update)</h2>
