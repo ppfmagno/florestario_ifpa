@@ -1,5 +1,5 @@
 <?php
-    
+
     require_once '../../models/especie.php';
     require_once '../../models/dbcontrole.php';
     
@@ -44,10 +44,10 @@
     foreach ($especies as $key => $especie) {
   ?>
   <tr>
-    <td><?php echo $praga['id_especie'] ?></td>
-    <td><?php echo $praga['nome_cientifico'] ?></td>
-    <td><a href="./editar.php?id=<?php echo $praga['id_especie'] ?>">editar</a></td>
-    <td><a href="./deletar.php?id=<?php echo $praga['id_especie'] ?>">deletar</a></td>
+    <td><?php echo $especie['id_especie'] ?></td>
+    <td><?php echo $especie['nome_cientifico'] ?></td>
+    <td><a href="./editar.php?id=<?php echo $especie['id_especie'] ?>">editar</a></td>
+    <td><a href="./deletar.php?id=<?php echo $especie['id_especie'] ?>">deletar</a></td>
   </tr>
   <?php
     }

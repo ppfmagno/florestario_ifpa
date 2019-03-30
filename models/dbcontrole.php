@@ -323,6 +323,33 @@ class DBcontrole extends mysqli {
     return $resultado->fetch_array();
   }
   
+  //Nome Popular das Especies
+  public function getNomesPopulasByIdEspecie($id) {
+    $sql = 'SELECT * FROM nome_popular_especie WHERE nome_popular_especie.especie_id_especie = ' . $id;
+    if (!$resultado = $this->query($sql)) {
+      die('Erro na query[' . $this->error . ']');      
+    }
+    while ($linha = $resultado->fetch_array()) {
+      $nomes_populares[] = $linha;
+    }
+    return $nomes_populares;
+  }
+  
+  public function inserirNomePopular($nomepopular){
+      $sql = 'INSERT INTO nome_popular_especie (nome, especie_id_especie)
+      VALUES ("'
+      . $nomepopular->nome . '","'
+      . $nomepopular->especie_id_especie . '")';
+      $this->query($sql);
+  }
+  
+  public function deletarNomePopular($id_nome_popular){
+      $sql = 'DELETE FROM nome_popular_especie '
+              . 'WHERE '
+              . 'id_nome_popular_especie = '. $id_nome_popular;
+      $this->query($sql);
+  }
+  
   //Individuos
   public function getIndividuos(){
     $sql = 'SELECT * FROM individuo';
