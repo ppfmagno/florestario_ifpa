@@ -10,7 +10,9 @@
     if (!empty($_POST['novo_individuo']['circunferencia_copa'])
             AND !empty($_POST['novo_individuo']['circunferencia_altura_peito'])
             AND !empty($_POST['novo_individuo']['especie'])) {
-        $novoindividuo = new Individuo(null, $_POST['novo_individuo']['circunferencia_copa'], 
+        $novoindividuo = new Individuo(
+                null, 
+                $_POST['novo_individuo']['circunferencia_copa'], 
                 $_POST['novo_individuo']['circunferencia_altura_peito'], 
                 empty($_POST['novo_individuo']['oco']) ? 0 : 1,
                 null,

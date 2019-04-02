@@ -2,7 +2,7 @@
   <ul>
     <li><a href="<?php echo $root ?>views/usuarios/usuarios.php">Usuários</a></li>
     <li><a href="<?php echo $root ?>views/inventarios/inventarios.php">Inventários</a></li>
-    <li><a href="<?php echo $root ?>views/parcelas.php">Parcelas</a></li>
+    <li><a href="<?php echo $root ?>views/parcelas/parcelas.php">Parcelas</a></li>
     <li><a href="<?php echo $root ?>views/individuos/individuos.php">Indivíduos</a></li>
     <li><a href="<?php echo $root ?>views/especies/especies.php">Espécies</a></li>
     <li><a href="<?php echo $root ?>views/pragas/pragas.php">Pragas</a></li>

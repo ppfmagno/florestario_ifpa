@@ -67,6 +67,14 @@ class DBcontrole extends mysqli {
     return $inventarios;
   }
 
+  public function getInventarioById($id) {
+    $sql = 'SELECT * FROM inventario WHERE id_inventario = "'. $id .'"';
+    if (!$resultado = $this->query($sql)) {
+      die('Erro na query[' . $this->error . ']');      
+    }
+    return $resultado->fetch_array();
+  }
+  
   public function insertInventario($inventario) {
     $sql = 'INSERT INTO inventario (nome_do_projeto, localidade_id_localidade, usuario_id_usuario)
       VALUES ("'
@@ -335,7 +343,7 @@ class DBcontrole extends mysqli {
     return $nomes_populares;
   }
   
-  public function inserirNomePopular($nomepopular){
+  public function insertNomePopular($nomepopular){
       $sql = 'INSERT INTO nome_popular_especie (nome, especie_id_especie)
       VALUES ("'
       . $nomepopular->nome . '","'
@@ -390,6 +398,51 @@ class DBcontrole extends mysqli {
   
   public function getIndividuoById($id) {
     $sql = 'SELECT * FROM individuo WHERE individuo.id_individuo = ' . $id;
+    if (!$resultado = $this->query($sql)) {
+      die('Erro na query[' . $this->error . ']');      
+    }
+    return $resultado->fetch_array();
+  }
+  
+  //Parcelas
+  public function getParcelas(){
+      $sql = 'SELECT * FROM parcela';
+    if (!$resultado = $this->query($sql)) {
+      die('Erro na query[' . $this->error . ']');
+    }
+    while ($linha = $resultado->fetch_array()) {
+      $parcelas[] = $linha;
+    }
+    return $parcelas;
+  }
+  
+  public function insertParcela($parcela){
+    $sql = 'INSERT INTO parcela (nome_da_parcela, largura, comprimento, '
+                                . ' inventario_id_inventario) '
+                                . 'VALUES ("' . $parcela->nome . '", '
+                                . ' "' . $parcela->largura . '", '
+                                . ' "' . $parcela->comprimento . '", '
+                                . ' "' . $parcela->inventario . '" )';
+    $this->query($sql);
+  }
+  
+  public function deleteParcela($id) {
+    $sql = 'DELETE FROM parcela WHERE id_parcela = ' . $id;
+    $this->query($sql);
+  }
+  
+  public function updateParcela($parcela){
+    $sql = 'UPDATE parcela
+            SET parcela.nome_da_parcela = "' . $parcela->nome . '", '
+            . 'parcela.largura = "'. $parcela->largura .'", '
+            . 'parcela.comprimento = "'. $parcela->comprimento .'", '
+            . 'parcela.inventario_id_inventario = "' . $parcela->inventario . '" '
+            .'WHERE parcela.id_parcela = ' . $parcela->id;
+    $this->query($sql);
+  }
+  
+  public function getParcelaById($id) {
+    $sql = 'SELECT * FROM parcela WHERE parcela.id_parcela = ' . $id;
     if (!$resultado = $this->query($sql)) {
       die('Erro na query[' . $this->error . ']');      
     }

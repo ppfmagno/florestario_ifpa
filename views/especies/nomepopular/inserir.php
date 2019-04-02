@@ -8,7 +8,7 @@ $con = new DBcontrole($dbconfig);
 
 if (isset($_POST['novo_nome_popular'])) {
   $novonomepopular = new NomePopularEspecie(null, $_POST['novo_nome_popular']['nome'], $_POST['novo_nome_popular']['especie_id_especie']);
-  $con->inserirNomePopular($novonomepopular);
+  $con->insertNomePopular($novonomepopular);
 }
 
 header('Location: ../editar.php');
