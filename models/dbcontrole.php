@@ -85,6 +85,15 @@ class DBcontrole extends mysqli {
     echo $this->error;
   }
 
+  public function updateInventario($inventario) {
+    $sql = 'UPDATE inventario
+      SET nome_do_projeto = "' . $inventario->nome . '",
+        localidade_id_localidade = "' . $inventario->localidade . '",
+        usuario_id_usuario = "' . $inventario->usuario . '"
+        WHERE inventario.id_inventario = ' . $inventario->id;
+    $this->query($sql);
+  }
+
   public function deleteInventario($id) {
     $sql = 'DELETE FROM inventario WHERE id_inventario = ' . $id;
     $this->query($sql);
